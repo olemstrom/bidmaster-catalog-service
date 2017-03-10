@@ -21,8 +21,8 @@ const consume = (topic: string, channel: Channel) => {
     return sub.asObservable();
 };
 
-export const publish = (topic: string, message: any) => {
-    const send = sendToQueue.bind(null, topic, message);
+export const publish = (topic: string, message: {}) => {
+    const send = sendToQueue.bind(null, topic, JSON.stringify(message));
     return channel.then(send).catch(console.warn);
 };
 

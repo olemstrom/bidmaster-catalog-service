@@ -1,6 +1,8 @@
 import * as KoaRouter from 'koa-router';
 import { Context } from 'koa'
 
+import { Catalog } from './catalog';
+
 interface Item {
     id: string;
     name: string;
@@ -15,8 +17,9 @@ const items: Item[] = [
 
 
 const router = new KoaRouter();
-router.get('/', function* (next: Context) {
-    this.body = items;
+router.post('/api/item', function* (next: Context) {
+    const body = this.request.body;
+    Catalog.add({ id: body['id'], name: body['name'] });
     yield next;
 });
 
