@@ -14,11 +14,12 @@ export namespace Catalog {
     export type ItemState = 'OPEN' | 'CLOSED';
 
     export interface Item {
-        id: string;
+        id?: string;
         name: string;
         description: string;
         current_price: number;
-        state: ItemState;
+        estimated_close: Date;
+        state?: ItemState;
     }
 
     export const add = (item: Item): Promise<any> => {

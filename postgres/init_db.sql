@@ -3,6 +3,7 @@ CREATE TABLE items (
   name        TEXT NOT NULL,
   description TEXT NOT NULL,
   current_price INT DEFAULT 0,
+  estimated_close DATE DEFAULT now(),
   state TEXT
 );
 
