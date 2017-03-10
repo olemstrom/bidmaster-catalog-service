@@ -17,6 +17,7 @@
     "@types/koa-json": "^2.0.16",
     "@types/koa-router": "^7.0.21",
     "@types/pg-promise": "0.0.28",
+    "request": "^2.79.0",
     "typescript": "^2.2.1"
   },
   "dependencies": {
