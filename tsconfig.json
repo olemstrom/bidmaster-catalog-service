@@ -8,7 +8,8 @@
     "lib": [
       "dom",
       "es5",
-      "es2015.Symbol"
+      "es2015.Symbol",
+      "es2015.promise"
     ]
   },
   "exclude": [
