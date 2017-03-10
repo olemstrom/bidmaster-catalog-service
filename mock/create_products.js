@@ -1005,7 +1005,7 @@ const MOCK_ADD_PRODUCTS = [
 
 
 MOCK_ADD_PRODUCTS.forEach(function(item) {
-    request.post('http://localhost:8080/api/item', { json: item })
+    request.post('http://0.0.0.0:8080/api/item', { json: item })
         .on('error', function(error) { console.error(error) })
         .on('end', function(end) { console.log(end) })
 });

@@ -1,9 +1,17 @@
 version: '2'
 services:
-  postgres:
-    build: ./postgres
+  catalog-service:
+    build:
+      context: ./
+      dockerfile: ./docker/Dockerfile.service
     ports:
-    - "6789:5432"
+      - "8080:8080"
+  db:
+    build:
+      context: ./docker
+      dockerfile: Dockerfile.postgres
+    ports:
+      - "6789:5432"
     env_file:
       - .env
     volumes:
