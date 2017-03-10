@@ -1,0 +1,1 @@
+const fn =(s: string) => console.log(s);
