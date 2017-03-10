@@ -11,16 +11,9 @@ import { Catalog } from './catalog';
 
 const app = new Koa();
 
-console.log('Starting catalog service');
+console.log('Starting catalog service on', process.env.PORT || '8080');
 
 app.use(json({ pretty: false }));
 app.use(bodyparser());
 app.use(routes);
 app.listen(process.env.PORT || '8080');
-
-listen('catalog.add')
-    .map(msg => JSON.parse(msg))
-    .map(msg => msg.item)
-    .map(item => item.id)
-    .switchMap(Catalog.get)
-    .subscribe(msg => console.log(msg));

@@ -24,11 +24,12 @@ export namespace Catalog {
 
     export const add = (item: Item): Promise<any> => {
         return db.query(`
-            INSERT INTO items(id, name, description, current_price, state)
-                VALUES($(id), $(name), $(description), $(current_price), $(state))
-            RETURNING id, name, description, current_price, state
+            INSERT INTO items(id, name, description, current_price, estimated_close, state)
+                VALUES($(id), $(name), $(description), $(current_price), $(estimated_close), $(state))
+            RETURNING id, name, description, current_price, state, estimated_close
         `, item)
             .then((res) => res[0])
+            .then((item) => { console.log(item); return item })
             .then((insertedItem: Item) => publish('catalog.add', { item: insertedItem }))
             .catch((err: Error) => {
                 console.error(err);
