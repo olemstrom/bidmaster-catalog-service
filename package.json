@@ -4,12 +4,19 @@
   "description": "",
   "main": "./build/main.js",
   "scripts": {
-    "build": "tsc src/main.ts",
-    "start": "node build/main"
+    "build": "tsc",
+    "start": "npm run build && node build/main"
   },
   "author": "Oscar Lemström",
   "license": "MIT",
   "devDependencies": {
+    "@types/koa": "^2.0.38",
+    "@types/koa-router": "^7.0.21",
     "typescript": "^2.2.1"
+  },
+  "dependencies": {
+    "koa": "^1.2.5",
+    "koa-route": "^2.4.2",
+    "koa-router": "^5.4.0"
   }
 }
