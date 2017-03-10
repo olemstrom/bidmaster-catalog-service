@@ -7,6 +7,7 @@ import * as bodyparser from 'koa-bodyparser';
 
 import { routes } from './routes';
 import { listen } from './queue';
+import { Catalog } from './catalog';
 
 const app = new Koa();
 
@@ -17,4 +18,9 @@ app.use(bodyparser());
 app.use(routes);
 app.listen(process.env.PORT || '8080');
 
-listen('catalog.add').map(msg => JSON.parse(msg)).subscribe(msg => console.log(msg));
+listen('catalog.add')
+    .map(msg => JSON.parse(msg))
+    .map(msg => msg.item)
+    .map(item => item.id)
+    .switchMap(Catalog.get)
+    .subscribe(msg => console.log(msg));
