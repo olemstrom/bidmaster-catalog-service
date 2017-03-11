@@ -1,6 +1,6 @@
 import * as pgPromise from 'pg-promise';
 
-import { publish } from './queue'
+import { amqp } from './main'
 
 const db = pgPromise()({
     host: process.env.POSTGRES_HOST,
@@ -30,7 +30,7 @@ export namespace Catalog {
         `, item)
             .then((res) => res[0])
             .then((item) => { console.log(item); return item })
-            .then((insertedItem: Item) => publish('catalog.add', { item: insertedItem }))
+            .then((insertedItem: Item) => amqp.publish('catalog.add', { item: insertedItem }))
             .catch((err: Error) => {
                 console.error(err);
                 throw err;
